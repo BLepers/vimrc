@@ -14,7 +14,8 @@ Bundle 'bogado/file-line'
 
 "if( -> adds ) !
 Bundle 'Raimondi/delimitMate' 
-let delimitMate_expand_cr = 1
+let delimitMate_expand_cr = 0
+let delimitMate_matchpairs = "(:),[:],<:>"
 
 "Auto tries to compile files and show errors. Only for gvim because it adds a
 "bar on the left that is likely to be a pain in the *** in vim (especially
@@ -27,13 +28,16 @@ endif
 
 "A nice autocomplete tools, but it breaks YouCompleteMe.
 let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_cursor_hold_i = 1
 "Bundle 'Shougo/neocomplcache'
 
 "Ultimate autocomplete stuff
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 let g:ycm_add_preview_to_completeopt = 0
 set completeopt=menuone
+
+Bundle 'vim-scripts/AutoComplPop'
 
 "Hightligh html tags 
 Bundle 'Valloric/MatchTagAlways'
@@ -145,7 +149,6 @@ augroup JumpCursorOnEdit
  \ endif
 augroup END
 
-"set equalprg=astyle\ --align-pointer=name\ --style=java\ --indent=spaces=3\ -w\ -Y\ -p\ -U
 
 
 set undodir=~/.vim/undodir
@@ -173,3 +176,106 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 
 set switchbuf=usetab,newtab
 "autocmd BufNewFile,BufRead *.c set formatprg=indent\ -kr\ -ts4
+
+function! InsertCloseTag()
+  " inserts the appropriate closing HTML tag
+  " may require ignorecase to be set, or to type HTML tags in exactly the same case
+  if &filetype == 'html' || &filetype=='php' || &filetype=='xml'
+  
+    " list of tags which shouldn't be closed:
+    let UnaryTags = ' Area Base Br br BR DD dd Dd DT dt Dt HR hr Hr Img img IMG input INPUT Input li Li LI link LINK Link meta Meta p P Param param PARAM '
+
+    " remember current position:
+    normal mz
+    normal mw
+
+    " loop backwards looking for tags:
+    let Found = 0
+   let NBL = 0
+    while Found == 0
+       let NBL = NBL+1
+       if NBL == 50
+          break
+      endif
+
+      " find the previous <, then go forwards one character and grab the first
+      " character plus the entire word:
+      execute "normal ?\<LT>\<CR>l"
+      normal "zyl
+      let Tag = expand('<cword>')
+
+      " if this is a closing tag, skip back to its matching opening tag:
+      if @z == '/'
+        execute "normal ?\<LT>" . Tag . "\<CR>"
+
+      " if this is a unary tag, then position the cursor for the next
+      " iteration:
+      elseif match(UnaryTags, ' ' . Tag . ' ') > 0
+        normal h
+
+      " otherwise this is the tag that needs closing:
+      else
+        let Found = 1
+
+      endif
+    endwhile " not yet found match
+
+    " create the closing tag and insert it:
+    let @z = '</' . Tag . '>'
+    normal `z"zp
+   normal `w
+   execute "normal />\<cr>"
+  else " filetype is not HTML
+   normal mw
+    let @z = '</'
+    normal "zp`wll
+  endif " check on filetype
+endfunction " InsertCloseTag()
+imap <lt>/ <Esc>:call InsertCloseTag()<CR>a
+
+
+function! AutoFormatC2()
+  if &filetype == 'c' || &filetype=='cpp'
+     let a = line('.')
+     let content = getline('.')
+     let save_cursor = col(".")
+
+     if(content =~ '}')
+        if(len(content) == save_cursor)
+           startinsert!
+        else
+           normal l
+           startinsert
+        endif
+     elseif(len(content) != save_cursor)
+        normal l
+        startinsert
+     else
+        execute a.','.a."!astyle --align-pointer=name --style=java --indent=spaces=3 -w -Y -p -U"
+        normal ==
+        startinsert!
+     endif
+  else
+     normal l
+     startinsert
+  endif
+endfunction
+inoremap <expr> <cr> pumvisible() ?"\<C-y>" : "\<Esc>:call AutoFormatC2()\<CR>\<CR>"
+
+function! AutoFormatC()
+  if &filetype == 'c' || &filetype=='cpp'
+     normal mwk
+     let a = line('.')
+     let content = getline('.')
+     execute a.','.a."!astyle --align-pointer=name --style=java --indent=spaces=3 -w -Y -p -U"
+     normal ==`wl
+  endif
+  normal ia
+  normal ==
+  normal x
+  call feedkeys('a', 'n')
+endfunction
+"inoremap <cr> <CR><Esc>:call AutoFormatC()<CR>
+
+"set equalprg=astyle\ --align-pointer=name\ --style=java\ --indent=spaces=3\ -w\ -Y\ -p\ -U
+"vnoremap = <Esc>`<dwgv=`<<C-Q>`>I<C-r>"<Esc>
