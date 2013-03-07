@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/blepers/hg/envadrouille/.hg/store/data/admin/common/php'
+let g:netrw_dirhist_2='/home/blepers/hg/envadrouille-plugin-feedback/scripts/feedback.js'
+let g:netrw_dirhist_3='/home/blepers/Downloads'
+let g:netrw_dirhist_4='/home/blepers/Pictures'
