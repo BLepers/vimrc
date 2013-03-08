@@ -39,6 +39,8 @@ Bundle 'Valloric/MatchTagAlways'
 Bundle "Chiel92/vim-autoformat"
 noremap <F7> :Autoformat<CR><CR>
 
+Bundle 'pix/vim-align'
+
 "Auto tries to compile files and show errors. Only for gvim because it adds a
 "bar on the left that is likely to be a pain in the *** in vim (especially
 "when copying code)
@@ -178,7 +180,6 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 
 set switchbuf=usetab,newtab
-"autocmd BufNewFile,BufRead *.c set formatprg=indent\ -kr\ -ts4
 
 function! InsertCloseTag()
   " inserts the appropriate closing HTML tag
@@ -284,5 +285,6 @@ function! AutoFormatC()
 endfunction
 "inoremap <cr> <CR><Esc>:call AutoFormatC()<CR>
 
-"set equalprg=astyle\ --align-pointer=name\ --style=java\ --indent=spaces=3\ -w\ -Y\ -p\ -U
-"vnoremap = <Esc>`<dwgv=`<<C-Q>`>I<C-r>"<Esc>
+vnoremap ; :Align =<CR>:Align &<CR>
+"vnoremap ;; <Leader>aocom<CR><Leader>ascom<CR><Leader>adec<CR><Leader>adcom<CR>
+
