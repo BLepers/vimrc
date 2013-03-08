@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~Msle0~/\<CacheKey\>
+~MSle0~/left
 
 # Last Substitute Search Pattern:
 ~MSle0&\r
@@ -17,28 +17,33 @@
 $
 
 # Command Line History (newest to oldest):
-:q!
-:w
 :q
-:BundleInstall
-:tabne
-:w!
-:!
+:w
+:q!
+:bn
+:Ta
 :wq
+:split
+:BundleInstall
+:set nonu
+:e ~/.vimrc
+:e .vim/after/plugin/TabularMaps.vim
+:set paste
+:BundleInstall bogado/file-line
+:BundleInstall Shougo/neocomplcache
+:e .vimrc
+:e .gvimrc
+:BundleInstall scrooloose/syntastic
 :set completeopt?
 :let g:ycm_complete_in_comments_and_strings?
 :BundleInstall Valloric/YouCompleteMe
-:tabnew hashtable.c
-:!nautilus .
-:e fr.js
-:e ../file.php
-:tabnew ../../../pages/index/php/indexdir.php
-:bn
-:set nonu
-:tabnew ../../../index.html
-:231
 
 # Search String History (newest to oldest):
+?/left
+?/down
+?/astyle
+??asty
+?/asty
 ? \<CacheKey\>
 ? \<create_hashtable\>
 ? \<keys_equal_fn\>
@@ -54,11 +59,6 @@ $
 ?/video
 ?/conso
 ?/.vid
-?/BALISE
-? \<options\>
-?/feed
-?/for_ea
-?/cpu
 
 # Expression History (newest to oldest):
 
@@ -69,35 +69,62 @@ $
 
 # Registers:
 "0	LINE	0
-	let s:arguments = "--mode=c --align-pointer=name --style=java --indent=spaces=3 -w -Y -p -U"
+	        if(len(content) == save_cursor)
+	           startinsert!
+	        else
+	           normal l
+	           startinsert
+	        endif
 ""1	LINE	0
-	     
+	   a.
+	
+	      ;
 "2	LINE	0
 	
+	   c.c.titi = toto;
+	   toto;
+	   c.c.toto =3;
+	   int dgfisd;
+	   dgfisd;
+	   a.
+	
+	      ;
+	
+	
+	   trululu = 15;
+	   trululu =a;
+	
+	   if(toto) {
+	      tutu;
+	
+	   }
+	   if(toto) {
+	      totot;
+	   }
+	   if(tutu) {
+	      fdsd = (1 + 2) / 3;
+	   }
+	
 "3	LINE	0
-	   c.c.titi;
-	   /usr/bin
+	#include </usr/bin/factor>
 "4	LINE	0
-	let g:ycm_add_preview_to_completeopt = 0
+	" vim: foldmethod=marker
 "5	LINE	0
+	     let a = line('.')
+	          let content = getline('.')
+	               let save_cursor = col(".")
 	
 "6	LINE	0
 	
 "7	LINE	0
-	   printf("%x\n", ((long)&a.toto)%8);
-	   printf("%x\n", ((long)&a.tutu)%8);
-	   printf("%x\n", ((long)&a.titi)%8);
-	   printf("%x\n", ((long)&a.toto2)%8);
-	   printf("%x\n", ((long)&a.titi2)%8);
-	   printf("%x\n", ((long)&a.toto3)%8);
-	   printf("%x\n", ((long)&a.titi3)%8);
-	
-	   long long b = *(&a.tutu);
-	   printf("%x\n", ((long)&b)%8);
+	     let a = line('.')
+	     let content = getline('.')
+	     let save_cursor = col(".")
 "8	LINE	0
-	            <img sr
+	     normal l
+	     startinsert
 "9	LINE	0
-	 "
+	inoremap <cr> <Esc>:call AutoFormatC2()<CR><CR>
 "a@	CHAR	0
 	�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kD�kd
 "e	CHAR	0
@@ -109,61 +136,94 @@ $
 "z	CHAR	0
 	/timedt|ÃÂÃÂklÃÂÃÂklÃÂÃÂkDÃÂÃÂkD/timeÃÂÃÂklÃÂÃÂklD?CÃÂÃÂkrpÃÂÃÂkri ÃÂÃÂkdÃÂÃÂkh
 "-	CHAR	0
-	stdio
+	fsdfsfdxcvcx
 
 # File marks:
-'0  5  11  ~/toto.html
-'1  8  8  ~/toto.html
-'2  9  3  ~/toto.html
-'3  3  0  ~/toto.c
-'4  28  6  ~/toto.c
-'5  8  0  ~/.vim/bundle/vim-autoformat/ftplugin/cpp.vim
-'6  32  4  ~/toto.c
-'7  32  0  ~/toto.c
-'8  32  27  ~/toto.c
-'9  37  10  ~/toto.c
+'0  46  33  ~/.vimrc
+'1  1  0  ~/git/Topology/mc2/ht_links/all_to_7.ht0
+'2  1  0  /etc/resolv.conf
+'3  13  0  ~/toto.c
+'4  24  3  ~/toto.c
+'5  30  0  ~/toto.c
+'6  7  8  ~/toto.c
+'7  30  12  ~/toto.c
+'8  30  1  ~/.vim/bundle/neocomplcache/autoload/neocomplcache/sources/vim_complete/mappings.dict
+'9  2530  56  ~/.vim/bundle/neocomplcache/autoload/neocomplcache.vim
 
 # Jumplist (newest first):
--'  5  11  ~/toto.html
+-'  46  33  ~/.vimrc
+-'  52  0  ~/.vimrc
+-'  1  0  ~/git/Topology/mc2/ht_links/all_to_7.ht0
+-'  1  0  ~/git/Topology/mc2/ht_links/all_to_7.ht3.hwc
+-'  1  0  ~/git/Topology/mc2/ht_links/all_to_7.ht3
+-'  1  0  ~/git/Topology/mc2/ht_links/all_to_7.ht2.hwc
+-'  225  0  ~/git/Topology/mc2/ht_links/all_to_7.ht2
+-'  1  0  ~/git/Topology/mc2/ht_links/all_to_7.ht1.hwc
+-'  1  0  ~/git/Topology/mc2/ht_links/all_to_7.ht1
+-'  1  0  ~/git/Topology/mc2/ht_links/all_to_7.ht0.hwc
+-'  1  0  /etc/resolv.conf
+-'  13  0  ~/toto.c
+-'  24  0  ~/toto.c
+-'  28  0  ~/toto.c
+-'  30  3  ~/toto.c
+-'  7  3  ~/toto.c
+-'  30  1  ~/.vim/bundle/neocomplcache/autoload/neocomplcache/sources/vim_complete/mappings.dict
+-'  1  0  ~/.vim/bundle/neocomplcache/autoload/neocomplcache/sources/vim_complete/mappings.dict
+-'  2530  56  ~/.vim/bundle/neocomplcache/autoload/neocomplcache.vim
+-'  214  29  ~/.vim/bundle/neocomplcache/autoload/neocomplcache.vim
+-'  1  0  ~/.vim/bundle/neocomplcache/autoload/neocomplcache.vim
+-'  2927  0  ~/.vim/bundle/neocomplcache/autoload/neocomplcache.vim
+-'  248  5  ~/.vimrc
+-'  51  16  ~/.vimrc
+-'  273  0  ~/.vimrc
+-'  263  2  ~/.vimrc
+-'  264  5  ~/.vimrc
+-'  42  0  ~/.vimrc
+-'  1  0  ~/test.c
+-'  50  3  ~/test.c
+-'  272  83  ~/.vimrc
+-'  1  0  ~/.vim/after/test.vim
+-'  7  0  ~/.vim/after/plugin/TabularMaps.vim
+-'  36  0  ~/.vimrc
+-'  17  28  ~/.vimrc
+-'  270  2  ~/.vimrc
+-'  290  0  ~/.vimrc
+-'  18  38  ~/.vimrc
+-'  250  22  ~/.vimrc
+-'  281  4  ~/.vimrc
+-'  260  8  ~/.vimrc
+-'  16  0  ~/.vimrc
+-'  32  0  ~/.vimrc
+-'  44  0  ~/.vimrc
+-'  48  0  ~/.vimrc
+-'  259  23  ~/.vimrc
+-'  247  41  ~/.vimrc
+-'  185  2  ~/.vimrc
+-'  238  27  ~/.vimrc
+-'  157  0  ~/.vimrc
+-'  158  0  ~/.vimrc
+-'  239  42  ~/.vimrc
+-'  183  228  ~/.vimrc
+-'  43  20  ~/.vimrc
+-'  178  0  ~/.vimrc
+-'  49  31  ~/.vimrc
+-'  33  0  ~/.vimrc
+-'  37  0  ~/.vimrc
+-'  25  2  ~/.vimrc
+-'  5  0  ~/.gvimrc
+-'  19  0  ~/.vimrc
+-'  1  0  ~/git/Minime/.vimrc
+-'  8  12  ~/toto.c
+-'  20  7  ~/toto.cpp
+-'  1  0  ~/toto.cpp
+-'  8  3  ~/toto.html
 -'  1  0  ~/toto.html
--'  8  8  ~/toto.html
--'  9  3  ~/toto.html
--'  3  0  ~/toto.c
--'  28  6  ~/toto.c
--'  1  0  ~/toto.c
--'  27  6  ~/toto.c
--'  32  0  ~/toto.c
--'  8  0  ~/.vim/bundle/vim-autoformat/ftplugin/cpp.vim
--'  1  0  ~/.vim/bundle/vim-autoformat/ftplugin/cpp.vim
--'  37  3  ~/toto.c
--'  40  6  ~/toto.c
--'  47  0  ~/toto.c
--'  38  0  ~/toto.c
--'  81  0  ~/.vim/bundle/syntastic/syntax_checkers/c/gcc.vim
--'  1  0  ~/.vim/bundle/syntastic/syntax_checkers/c/gcc.vim
--'  46  0  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  9  0  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  10  0  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  2  1  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  1813  4  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  1  0  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  50  0  ~/toto.c
--'  59  2  ~/toto.c
--'  48  0  ~/toto.c
--'  13  0  ~/.vimrc
--'  12  0  ~/.vimrc
--'  11  0  ~/.vimrc
--'  1  0  ~/git/Minime/.vimrc
--'  61  0  ~/toto.c
--'  20  7  ~/toto.cpp
--'  1  0  ~/toto.cpp
--'  13  3  ~/toto.html
--'  75  2  ~/toto.c
+-'  18  3  ~/toto.c
 -'  445  6  ~/git/Minime/memory_test.c
--'  143  0  ~/.vimrc
+-'  179  0  ~/.vimrc
 -'  10  0  ~/.vimrc
 -'  1  0  ~/git/Minime/memory_test.c
--'  41  0  ~/.vimrc
+-'  78  0  ~/.vimrc
 -'  1  0  ~/git/Minime/.git/config
 -'  41  39  ~/git/tmp/BenchBox/miniprof/miniprof-launch.pl
 -'  47  3  ~/git/tmp/BenchBox/miniprof/miniprof-launch.pl
@@ -173,195 +233,384 @@ $
 -'  148  1  ~/git/tmp/BenchBox/miniprof/miniprof.c
 -'  149  1  ~/git/tmp/BenchBox/miniprof/miniprof.c
 -'  171  9  ~/git/tmp/BenchBox/miniprof/miniprof.c
--'  8  0  ~/.vim/bundle/vim-autoformat/ftplugin/cpp.vim
--'  1  0  ~/.vim/bundle/vim-autoformat/ftplugin/cpp.vim
--'  81  0  ~/.vim/bundle/syntastic/syntax_checkers/c/gcc.vim
--'  1  0  ~/.vim/bundle/syntastic/syntax_checkers/c/gcc.vim
--'  46  0  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  9  0  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  10  0  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  2  1  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  1813  4  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  1  0  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  13  0  ~/.vimrc
--'  12  0  ~/.vimrc
--'  11  0  ~/.vimrc
--'  1  0  ~/git/Minime/.vimrc
--'  20  7  ~/toto.cpp
--'  1  0  ~/toto.cpp
--'  445  6  ~/git/Minime/memory_test.c
--'  143  0  ~/.vimrc
--'  10  0  ~/.vimrc
--'  1  0  ~/git/Minime/memory_test.c
--'  41  0  ~/.vimrc
--'  1  0  ~/git/Minime/.git/config
--'  41  39  ~/git/tmp/BenchBox/miniprof/miniprof-launch.pl
--'  47  3  ~/git/tmp/BenchBox/miniprof/miniprof-launch.pl
--'  1  0  ~/git/tmp/BenchBox/miniprof/miniprof-launch.pl
--'  551  2  ~/git/tmp/BenchBox/miniprof/miniprof.c
--'  206  0  ~/git/tmp/BenchBox/miniprof/miniprof.c
--'  148  1  ~/git/tmp/BenchBox/miniprof/miniprof.c
--'  149  1  ~/git/tmp/BenchBox/miniprof/miniprof.c
--'  171  9  ~/git/tmp/BenchBox/miniprof/miniprof.c
--'  3  0  ~/toto.c
--'  28  6  ~/toto.c
+-'  69  0  ~/git/Miniprof/miniprof.h
+-'  16  3  ~/toto.c
 -'  1  0  ~/toto.c
--'  27  6  ~/toto.c
--'  32  0  ~/toto.c
--'  8  0  ~/.vim/bundle/vim-autoformat/ftplugin/cpp.vim
--'  1  0  ~/.vim/bundle/vim-autoformat/ftplugin/cpp.vim
--'  37  3  ~/toto.c
--'  40  6  ~/toto.c
--'  47  0  ~/toto.c
--'  38  0  ~/toto.c
--'  81  0  ~/.vim/bundle/syntastic/syntax_checkers/c/gcc.vim
--'  1  0  ~/.vim/bundle/syntastic/syntax_checkers/c/gcc.vim
--'  46  0  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  9  0  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  10  0  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  2  1  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  1813  4  ~/git/linuxes/linux-stable-replication/mm/mmap.c
--'  1  0  ~/git/linuxes/linux-stable-replication/mm/mmap.c
+-'  56  4  ~/git/applications/parsec/pkgs/kernels/dedup/src/hashtable.c
+-'  52  2  ~/git/applications/parsec/pkgs/kernels/dedup/src/dedup.c
+-'  124  10  ~/git/applications/parsec/pkgs/kernels/dedup/src/dedup.c
+-'  21  10  ~/git/applications/parsec/pkgs/kernels/dedup/src/dedup.c
+-'  1  0  ~/git/applications/parsec/pkgs/kernels/dedup/src/dedup.c
+-'  8  0  ~/Pictures
+-'  116  0  ~/git/tmp/dune/kern/core.c
+-'  38  3  ~/toto.c
+-'  41  3  ~/toto.c
+-'  43  0  ~/toto.c
+-'  44  0  ~/toto.c
+-'  45  0  ~/toto.c
+-'  7  0  ~/.vim/after/plugin/TabularMaps.vim
 
 # Buffer list:
-%~/toto.html	5	11
+%~/.vimrc	46	33
 
 # History of marks within files (newest to oldest):
 
-> ~/toto.html
-	"	5	11
-	^	5	12
-	.	5	11
-	+	9	25
-	+	14	18
-	+	13	0
-	+	14	0
-	+	4	12
-	+	9	0
-	+	6	12
-	+	7	12
-	+	8	8
-	+	5	11
+> ~/.vimrc
+	"	46	33
+	^	46	34
+	.	46	33
+	+	270	9
+	+	290	0
+	+	260	17
+	+	261	19
+	+	271	0
+	+	253	0
+	+	257	0
+	+	263	5
+	+	270	0
+	+	249	15
+	+	260	0
+	+	256	0
+	+	270	0
+	+	242	21
+	+	274	21
+	+	286	11
+	+	290	45
+	+	279	0
+	+	279	0
+	+	276	12
+	+	279	0
+	+	280	0
+	+	281	0
+	+	276	13
+	+	281	0
+	+	280	15
+	+	290	46
+	+	281	15
+	+	280	16
+	+	290	0
+	+	290	0
+	+	290	0
+	+	290	0
+	+	276	5
+	+	277	5
+	+	278	5
+	+	279	5
+	+	280	5
+	+	281	5
+	+	281	5
+	+	281	29
+	+	281	14
+	+	281	0
+	+	281	5
+	+	281	0
+	+	281	0
+	+	282	0
+	+	281	0
+	+	282	0
+	+	276	5
+	+	277	5
+	+	278	5
+	+	279	5
+	+	280	5
+	+	290	0
+	+	287	0
+	+	290	0
+	+	272	36
+	+	287	0
+	+	249	39
+	+	251	0
+	+	253	0
+	+	249	0
+	+	252	0
+	+	254	0
+	+	250	22
+	+	18	38
+	+	17	28
+	+	272	0
+	+	31	43
+	+	32	0
+	+	36	0
+	+	271	11
+	+	272	22
+	+	272	0
+	+	272	83
+	+	36	0
+	+	41	33
+	+	29	58
+	+	34	76
+	+	40	39
+	+	51	16
+	+	51	16
+	+	53	31
+	+	51	16
+	+	264	0
+	+	270	0
+	+	264	0
+	+	51	16
+	+	248	0
+	+	243	0
+	+	248	0
+	+	246	0
+	+	53	0
+	+	52	33
+	+	54	0
+	+	51	17
+	+	52	0
+	+	53	0
+	+	46	33
+	a	272	0
+
+> ~/git/Topology/mc2/ht_links/all_to_7.ht0
+	"	1	0
+
+> ~/git/Topology/mc2/ht_links/all_to_7.ht0.hwc
+	"	1	0
+
+> ~/git/Topology/mc2/ht_links/all_to_7.ht1
+	"	1	0
+
+> ~/git/Topology/mc2/ht_links/all_to_7.ht1.hwc
+	"	1	0
+
+> ~/git/Topology/mc2/ht_links/all_to_7.ht2
+	"	225	0
+
+> ~/git/Topology/mc2/ht_links/all_to_7.ht2.hwc
+	"	1	0
+
+> ~/git/Topology/mc2/ht_links/all_to_7.ht3
+	"	1	0
+
+> ~/git/Topology/mc2/ht_links/all_to_7.ht3.hwc
+	"	1	0
+
+> /etc/resolv.conf
+	"	1	0
 
 > ~/toto.c
-	"	3	0
-	.	1	0
-	+	32	17
+	"	13	0
+	.	24	0
+	+	84	0
+	+	78	15
+	+	78	15
+	+	83	0
+	+	78	18
+	+	78	36
+	+	82	0
+	+	82	0
+	+	81	0
+	+	78	15
+	+	80	0
+	+	78	18
+	+	80	0
+	+	78	24
+	+	79	0
+	+	74	11
+	+	78	0
+	+	74	29
+	+	77	0
+	+	74	20
 	+	75	0
-	+	72	0
-	+	72	0
-	+	72	23
-	+	72	23
-	+	72	23
-	+	72	23
-	+	32	12
-	+	32	5
-	+	32	20
-	+	32	20
-	+	72	20
-	+	72	20
-	+	72	20
-	+	72	20
-	+	72	20
-	+	32	12
-	+	32	12
-	+	32	17
-	+	32	13
-	+	32	18
-	+	32	13
-	+	32	18
-	+	32	28
-	+	32	18
-	+	72	18
-	+	72	18
-	+	72	18
-	+	72	18
-	+	72	18
-	+	32	29
-	+	72	29
-	+	72	30
-	+	72	30
-	+	72	30
-	+	72	30
-	+	32	24
-	+	32	24
-	+	72	24
-	+	72	24
-	+	72	24
-	+	72	24
-	+	72	38
-	+	73	26
-	+	74	27
-	+	73	12
-	+	32	0
-	+	32	0
-	+	32	28
-	+	32	0
-	+	66	5
-	+	65	5
-	+	71	7
-	+	32	28
-	+	61	0
-	+	32	3
-	+	32	11
-	+	32	0
-	+	32	0
-	+	32	12
+	+	17	13
 	+	60	0
-	+	48	0
-	+	55	3
-	+	54	0
 	+	59	0
-	+	50	16
-	+	32	10
-	+	38	0
-	+	46	31
+	+	65	7
+	+	53	6
+	+	19	4
+	+	8	15
+	+	8	0
+	+	58	0
+	+	54	5
+	+	30	18
+	+	49	17
+	+	30	15
+	+	55	8
+	+	63	7
+	+	17	12
+	+	63	8
+	+	62	10
+	+	58	9
+	+	54	8
+	+	53	9
+	+	30	10
+	+	17	14
+	+	30	19
+	+	30	0
+	+	30	15
+	+	30	0
+	+	30	4
+	+	7	11
+	+	52	0
+	+	51	14
+	+	30	16
+	+	30	14
+	+	48	0
 	+	47	0
-	+	40	7
-	+	37	10
-	+	32	23
-	+	32	16
-	+	35	0
-	+	32	26
-	+	32	0
-	+	32	0
-	+	32	0
-	+	32	0
-	+	32	10
-	+	32	0
-	+	32	1
-	+	32	0
-	+	32	19
-	+	32	0
-	+	32	19
-	+	32	13
-	+	32	19
-	+	32	0
-	+	32	0
-	+	32	0
-	+	32	0
-	+	32	0
-	+	32	0
-	+	1	0
-	+	27	33
-	+	28	0
-	+	1	0
+	+	30	14
+	+	46	0
+	+	45	0
+	+	30	14
+	+	44	0
+	+	30	14
+	+	43	0
+	+	41	0
+	+	42	0
+	+	38	0
+	+	39	0
+	+	36	0
+	+	30	19
+	+	30	6
+	+	30	5
+	+	30	11
+	+	30	0
+	+	2	18
+	+	2	19
+	+	30	19
+	+	2	0
+	+	30	5
+	+	30	17
+	+	30	0
+	+	25	28
+	+	28	31
+	+	30	0
+	+	28	23
+	+	29	3
+	+	30	1
+	+	33	1
+	+	5	0
+	+	3	19
+	+	4	0
+	+	21	6
+	+	22	0
+	+	21	4
+	+	23	9
+	+	24	13
+	+	24	13
+	+	24	5
+	+	24	9
+	+	24	0
+	+	24	0
+	w	106	2
+
+> ~/.vim/bundle/neocomplcache/autoload/neocomplcache/sources/vim_complete/mappings.dict
+	"	30	1
+
+> ~/.vim/bundle/neocomplcache/autoload/neocomplcache.vim
+	"	2530	56
+	.	2928	0
+	+	2928	0
 
 > ~/[Vundle] Installer
-	"	10	0
+	"	11	0
 	.	1	0
-	+	24	0
-	+	21	0
-	+	18	0
-	+	10	0
+	+	40	0
+	+	37	0
+	+	34	0
+	+	31	0
+	+	28	0
+	+	20	0
+	+	11	0
 	+	1	0
 
+> ~/test.c
+	"	1	0
+	.	50	0
+	+	50	0
+	+	50	0
+
+> ~/.vim/after/test.vim
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/git/linuxes/linux-stable-replication/mm/[Vundle] Installer
+	"	9	0
+	.	1	0
+	+	1	0
+
+> ~/.vim/bundle/YouCompleteMe/doc/youcompleteme.txt
+	"	736	26
+
+> ~/.vim/bundle/YouCompleteMe/autoload/youcompleteme.vim
+	"	15	0
+	^	70	2
+	.	116	0
+	+	70	2
+	+	89	0
+	+	116	0
+
+> ~/.vim/mswin.vim
+	"	35	0
+
+> /usr/share/vim/vim73/doc/if_ole.txt
+	"	154	7
+
+> ~/.vim/after/plugin/TabularMaps.vim
+	"	7	0
+
+> ~/.vim/bundle/delimitMate/autoload/delimitMate.vim
+	"	527	5
+	.	634	0
+	+	634	0
+
+> /usr/share/vim/vim73/doc/pattern.txt
+	"	1282	0
+
+> ~/git/linuxes/linux-stable-replication/mm/mmap.c
+	"	214	0
+	^	214	0
+	.	214	0
+	+	46	0
+	+	45	0
+	+	55	0
+	+	173	0
+	+	175	0
+	+	176	8
+	+	177	0
+	+	182	25
+	+	183	0
+	+	187	2
+	+	211	10
+	+	212	0
+	+	214	0
+
 > ~/.vim/bundle/vim-autoformat/ftplugin/cpp.vim
-	"	8	0
-	^	8	1
-	.	8	0
-	+	9	0
-	+	8	0
+	"	4	22
+	^	4	23
+	.	5	0
+	+	11	0
+	+	10	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	5	0
+
+> ~/.gvimrc
+	"	5	0
+	.	6	0
+	+	6	0
+
+> ~/.vim/bundle/vim-autoformat/plugin/autoformat.vim
+	"	39	0
+
+> ~/toto.html
+	"	12	1
+	^	12	2
+	.	12	1
+	+	17	25
+	+	22	18
+	+	21	0
+	+	22	0
+	+	4	12
+	+	17	0
+	+	14	12
+	+	15	12
+	+	16	8
+	+	13	11
+	+	12	1
+	w	11	6
+	z	11	6
 
 > ~/.vim/bundle/vim-autoformat/ftplugin/cs.vim
 	"	1	0
@@ -376,41 +625,6 @@ $
 
 > ~/.vim/bundle/syntastic/syntax_checkers/c/gcc.vim
 	"	81	0
-
-> ~/git/linuxes/linux-stable-replication/mm/mmap.c
-	"	46	0
-
-> ~/.vimrc
-	"	17	0
-	^	17	28
-	.	17	27
-	+	19	3
-	+	6	0
-	+	8	0
-	+	9	1
-	+	10	1
-	+	19	0
-	+	19	0
-	+	18	0
-	+	10	0
-	+	9	0
-	+	8	0
-	+	6	0
-	+	5	0
-	+	12	0
-	+	18	0
-	+	21	0
-	+	12	31
-	+	11	87
-	+	10	22
-	+	11	0
-	+	12	0
-	+	13	40
-	+	14	22
-	+	15	61
-	+	16	28
-	+	15	29
-	+	17	27
 
 > ~/git/Minime/.vimrc
 	"	1	0
@@ -431,14 +645,6 @@ $
 
 > ~/ycm_build/llvm-3.2.src/Makefile
 	"	71	28
-
-> ~/.vim/bundle/YouCompleteMe/autoload/youcompleteme.vim
-	"	116	0
-	^	70	2
-	.	116	0
-	+	70	2
-	+	89	0
-	+	116	0
 
 > ~/vim/[Vundle] Installer
 	"	4	0
@@ -1314,260 +1520,3 @@ $
 	.	45	0
 	+	17	17
 	+	45	0
-
-> ~/hg/index.html
-	"	130	3
-	^	131	0
-	.	129	0
-	+	129	0
-	+	131	0
-	+	129	0
-
-> ~/hg/plugin-feedback/scripts/html2canvas.js
-	"	2062	0
-	.	2062	0
-	+	2063	0
-	+	2060	0
-	+	1930	0
-	+	2062	0
-
-> ~/hg/plugin-feedback/scripts/feedback.min.js
-	"	613	7
-	^	655	225
-	.	613	0
-	+	623	0
-	+	99	11
-	+	210	14
-	+	209	0
-	+	210	0
-	+	247	45
-	+	247	0
-	+	247	77
-	+	247	0
-	+	247	22
-	+	247	0
-	+	247	12
-	+	247	0
-	+	247	35
-	+	247	0
-	+	247	0
-	+	247	0
-	+	247	0
-	+	247	22
-	+	247	13
-	+	247	15
-	+	247	12
-	+	247	12
-	+	614	0
-	+	616	64
-	+	617	16
-	+	613	25
-	+	621	21
-	+	655	224
-	+	613	0
-
-> ~/site/www/slovenie/jgallery.js
-	"	45	0
-
-> ~/site/www/index.html
-	"	67	0
-
-> ~/site/www/slovenie/index.html
-	"	106	0
-
-> ~/hg/envadrouille-revbundler/create_new_version.pl
-	"	43	15
-	^	43	16
-	.	43	22
-	+	20	64
-	+	39	0
-	+	20	0
-	+	39	47
-	+	41	27
-	+	42	24
-	+	43	13
-	+	40	21
-	+	41	18
-	+	42	9
-	+	45	16
-	+	46	15
-	+	47	0
-	+	44	14
-	+	43	22
-
-> ~/git/Topology/stremi/latency
-	"	1	0
-
-> ~/hg/plugin-menu/scripts/lang/option_en.js
-	"	3	37
-	^	3	8
-	.	4	0
-	+	2	22
-	+	3	8
-	+	4	0
-
-> ~/hg/plugin-menu/scripts/lang/option_fr.js
-	"	4	0
-	^	3	18
-	.	4	0
-	+	2	28
-	+	3	17
-	+	4	0
-
-> ~/hg/plugin-menu/README.md
-	"	9	43
-	^	7	52
-	.	9	43
-	+	4	33
-	+	7	51
-	+	9	43
-
-> ~/hg/Dropbox/Public/index.html
-	"	129	3
-	.	129	0
-	+	129	0
-
-> ~/tmp/envadrouille/.git/config
-	"	1	0
-
-> ~/git/largepages/large-pages/time.pl
-	"	55	0
-	^	42	70
-	.	41	25
-	+	42	62
-	+	42	0
-	+	52	18
-	+	41	38
-	+	42	0
-	+	45	0
-	+	44	17
-	+	16	45
-	+	49	4
-	+	37	14
-	+	41	14
-	+	42	47
-	+	64	10
-	+	81	0
-	+	65	0
-	+	72	23
-	+	79	0
-	+	38	15
-	+	37	14
-	+	38	69
-	+	39	42
-	+	40	41
-	+	41	0
-	+	38	79
-	+	40	12
-	+	50	0
-	+	38	44
-	+	40	48
-	+	38	45
-	+	68	0
-	+	38	24
-	+	40	24
-	+	29	26
-	+	42	0
-	+	41	25
-
-> ~/git/PerlLib/Format.pm
-	"	512	115
-
-> ~/git/kernel-modules/L3/Makefile
-	"	3	0
-	^	3	9
-	.	3	9
-	+	3	9
-
-> ~/git/kernel-modules/L3/module.c
-	"	7	54
-	^	7	55
-	.	7	54
-	+	7	54
-
-> ~/hg/envadrouille/admin/pages/index/scripts/main.js
-	"	281	131
-	^	281	132
-	.	281	131
-	+	5	0
-	+	6	1
-	+	281	131
-
-> ~/hg/envadrouille/admin/pages/face/php/face.php
-	"	50	7
-	^	50	7
-	.	50	6
-	+	50	6
-
-> ~/hg/envadrouille/admin/pages/index/php/thumb.php
-	"	113	7
-	^	113	7
-	.	113	6
-	+	2	0
-	+	6	9
-	+	113	6
-
-> ~/hg/envadrouille/admin/index.php
-	"	27	85
-	^	27	86
-	.	27	86
-	+	126	7
-	+	112	0
-	+	139	0
-	+	126	7
-	+	115	4
-	+	116	0
-	+	126	13
-	+	115	28
-	+	126	10
-	+	135	0
-	+	134	0
-	+	139	0
-	+	114	37
-	+	125	0
-	+	126	0
-	+	124	0
-	+	139	0
-	+	2	0
-	+	3	11
-	+	6	13
-	+	3	0
-	+	16	0
-	+	17	152
-	+	21	1
-	+	30	48
-	+	30	0
-	+	30	89
-	+	17	56
-	+	17	56
-	+	17	151
-	+	21	0
-	+	22	19
-	+	30	0
-	+	17	0
-	+	18	9
-	+	22	9
-	+	26	18
-	+	27	86
-
-> ~/hg/envadrouille/admin/common/scripts/utils.js
-	"	11	0
-	^	11	0
-	.	10	18
-	+	1	76
-	+	10	0
-	+	9	2
-	+	5	47
-	+	6	53
-	+	319	44
-	+	151	22
-	+	152	0
-	+	153	0
-	+	150	60
-	+	149	29
-	+	150	58
-	+	149	18
-	+	10	17
-	+	149	18
-	+	10	18
-	a	149	18

@@ -6,45 +6,48 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
 Bundle 'gmarik/vundle'
 
 "Make vim file:line work!
 Bundle 'bogado/file-line' 
 
 "if( -> adds ) !
-Bundle 'Raimondi/delimitMate' 
+"Do not auto create {} because it breaks astyle autoformating
 let delimitMate_expand_cr = 0
 let delimitMate_matchpairs = "(:),[:],<:>"
+Bundle 'Raimondi/delimitMate' 
 
-"Auto tries to compile files and show errors. Only for gvim because it adds a
-"bar on the left that is likely to be a pain in the *** in vim (especially
-"when copying)
-if has("gui_running")
-   let g:syntastic_c_no_default_include_dirs = 0
-   let g:syntastic_c_include_dirs = [ '../include', 'include', '../../include', '.' ]
-   Bundle 'scrooloose/syntastic'
-endif
+"Simple autocomplete that does its job.
+"Bundle 'vim-scripts/AutoComplPop'
 
-"A nice autocomplete tools, but it breaks YouCompleteMe.
+"A nice autocomplete tools that tries to be a little more intelligent that CTRL+P and works quite well
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_cursor_hold_i = 1
-"Bundle 'Shougo/neocomplcache'
+let g:neocomplcache_enable_insert_char_pre = 1
+Bundle 'Shougo/neocomplcache'
 
-"Ultimate autocomplete stuff
-let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+"Ultimate autocomplete stuff that tries to be too intelligent and sucks at it
+"let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+"let g:ycm_add_preview_to_completeopt = 0
+"set completeopt=menuone
 "Bundle 'Valloric/YouCompleteMe'
-let g:ycm_add_preview_to_completeopt = 0
-set completeopt=menuone
-
-Bundle 'vim-scripts/AutoComplPop'
 
 "Hightligh html tags 
 Bundle 'Valloric/MatchTagAlways'
 
-"Autoformat
+"Autoformat when hitting <F7> 
 Bundle "Chiel92/vim-autoformat"
 noremap <F7> :Autoformat<CR><CR>
+
+"Auto tries to compile files and show errors. Only for gvim because it adds a
+"bar on the left that is likely to be a pain in the *** in vim (especially
+"when copying code)
+if has("gui_running")
+   let g:syntastic_check_on_open=1
+   let g:syntastic_c_no_default_include_dirs = 0
+   let g:syntastic_c_include_dirs = [ '../include', 'include', '../../include', '.' ]
+   Bundle 'scrooloose/syntastic'
+endif
 
 
 let mapleader = ","
@@ -235,11 +238,11 @@ imap <lt>/ <Esc>:call InsertCloseTag()<CR>a
 
 
 function! AutoFormatC2()
-  if &filetype == 'c' || &filetype=='cpp'
-     let a = line('.')
-     let content = getline('.')
-     let save_cursor = col(".")
+  let a = line('.')
+  let content = getline('.')
+  let save_cursor = col(".")
 
+  if &filetype == 'c' || &filetype=='cpp'
      if(content =~ '}')
         if(len(content) == save_cursor)
            startinsert!
@@ -256,8 +259,12 @@ function! AutoFormatC2()
         startinsert!
      endif
   else
-     normal l
-     startinsert
+     if(len(content) == save_cursor)
+        startinsert!
+     else
+        normal l
+        startinsert
+     endif
   endif
 endfunction
 inoremap <expr> <cr> pumvisible() ?"\<C-y>" : "\<Esc>:call AutoFormatC2()\<CR>\<CR>"
