@@ -1,45 +1,18 @@
 set nocompatible
 
+au BufNewFile,BufRead *.txt :set ft=c " all my .txt files are c
+
 filetype off                   " required!
+
+call plug#begin()
+Plug 'rightson/vim-p4-syntax'
+call plug#end()
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-Bundle 'gmarik/vundle'
-
 "Make vim file:line work!
 Bundle 'bogado/file-line' 
-
-"if( -> adds ) !
-"Do not auto create {} because it breaks astyle autoformating
-let delimitMate_expand_cr = 0
-let delimitMate_matchpairs = "(:),[:],<:>"
-Bundle 'Raimondi/delimitMate' 
-
-"Simple autocomplete that does its job.
-"Bundle 'vim-scripts/AutoComplPop'
-
-"A nice autocomplete tools that tries to be a little more intelligent that CTRL+P and works quite well
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_cursor_hold_i = 1
-let g:neocomplcache_enable_insert_char_pre = 1
-Bundle 'Shougo/neocomplcache'
-
-"Ultimate autocomplete stuff that tries to be too intelligent and sucks at it
-"let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-"let g:ycm_add_preview_to_completeopt = 0
-"set completeopt=menuone
-"Bundle 'Valloric/YouCompleteMe'
-
-"Hightligh html tags 
-Bundle 'Valloric/MatchTagAlways'
-
-"Autoformat when hitting <F7> 
-Bundle "Chiel92/vim-autoformat"
-noremap <F7> :Autoformat<CR><CR>
-
-Bundle 'pix/vim-align'
 
 "Auto tries to compile files and show errors. Only for gvim because it adds a
 "bar on the left that is likely to be a pain in the *** in vim (especially
@@ -48,9 +21,10 @@ if has("gui_running")
    let g:syntastic_check_on_open=1
    let g:syntastic_c_no_default_include_dirs = 0
    let g:syntastic_c_include_dirs = [ '../include', 'include', '../../include', '.' ]
+   let g:syntastic_cpp_compiler = 'g++'
+   let g:syntastic_cpp_compiler_options = ' -std=c++0x'
    Bundle 'scrooloose/syntastic'
 endif
-
 
 let mapleader = ","
 let g:mapleader = ","
@@ -61,16 +35,16 @@ syn on
 set syntax=on
 filetype indent on
 filetype plugin on
+au BufNewFile,BufRead *.txt :set ft=c " all my .txt files are c
 
-"Afficher les n° de ligne
+"Afficher les nÂ° de ligne
 set nu
 
-"Activer la souris dans vim (dans gvim elle est déjà active)
+"Activer la souris dans vim (dans gvim elle est dÃ©jÃ  active)
 "set mouse=a
 
-"Afficher les parenthèses correspondantes
+"Afficher les parenthÃ¨ses correspondantes
 set showmatch
-
 
 "Modifier la police
 set guifont=Courier\ New\ 14
@@ -78,38 +52,22 @@ set guifont=Courier\ New\ 14
 "Modifier la taille des tabulations
 set tabstop=3
 set shiftwidth=3
-set softtabstop=3
-set expandtab "supprime les tabulations et met des espaces
-
+"set softtabstop=3
+"set expandtab
 
 "Recherche
 set incsearch
 set ignorecase
 set smartcase
 
-"Complétion
+"ComplÃ©tion
 set wmnu "affiche le menu
-set wildmode=list:longest,list:full "affiche toutes les possibilités
-set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz "ignorer certains types de fichiers pour la complétion des includes
-
-
-"Folding
-function! MyFoldFunction()
-	let line = getline(v:foldstart)
-	let sub = substitute(line,'/\*\|\*/\|^\s+', '', 'g')
-	let lines = v:foldend - v:foldstart + 1
-	return v:folddashes.sub.'...'.lines.' Lines...'.getline(v:foldend)
-endfunction
-"set foldmethod=syntax "Réduira automatiquement les fonctions et blocs (#region en C# par exemple)
-set foldtext=MyFoldFunction() "on utilise notre fonction (optionnel)
-
+set wildmode=list:longest,list:full "affiche toutes les possibilitÃ©s
+set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz "ignorer certains types de fichiers pour la complÃ©tion des includes
 
 "Afficher la ligne du curseur
 set cursorline
 :hi CursorLine cterm=bold
-
-
-
 
 imap <C-Space> <C-x><C-o>
 iab #i #include
@@ -155,7 +113,6 @@ augroup JumpCursorOnEdit
 augroup END
 
 
-
 set undodir=~/.vim/undodir
 set undofile
 set undolevels=5000 "maximum number of changes that can be undone
@@ -170,15 +127,6 @@ map <C-l> <C-W>l
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
-
 set switchbuf=usetab,newtab
 
 function! InsertCloseTag()
@@ -187,7 +135,7 @@ function! InsertCloseTag()
   if &filetype == 'html' || &filetype=='php' || &filetype=='xml'
   
     " list of tags which shouldn't be closed:
-    let UnaryTags = ' Area Base Br br BR DD dd Dd DT dt Dt HR hr Hr Img img IMG input INPUT Input li Li LI link LINK Link meta Meta p P Param param PARAM '
+    let UnaryTags = ' Area Base Br br BR DD dd Dd DT dt Dt HR hr Hr Img img IMG input INPUT Input link LINK Link meta Meta p P Param param PARAM '
 
     " remember current position:
     normal mz
@@ -238,53 +186,16 @@ endfunction " InsertCloseTag()
 imap <lt>/ <Esc>:call InsertCloseTag()<CR>a
 
 
-function! AutoFormatC2()
-  let a = line('.')
-  let content = getline('.')
-  let save_cursor = col(".")
-
-  if &filetype == 'c' || &filetype=='cpp'
-     if(content =~ '}')
-        if(len(content) == save_cursor)
-           startinsert!
-        else
-           normal l
-           startinsert
-        endif
-     elseif(len(content) != save_cursor)
-        normal l
-        startinsert
-     else
-        execute a.','.a."!astyle --align-pointer=name --style=java --indent=spaces=3 -w -Y -p -U"
-        normal ==
-        startinsert!
-     endif
+let g:autosave_time = 1
+function! UpdateFile()
+  if((localtime() - b:save_time) >= g:autosave_time)
+      update
+      let b:save_time = localtime()
   else
-     if(len(content) == save_cursor)
-        startinsert!
-     else
-        normal l
-        startinsert
-     endif
+      " just debugging info
+      echo "[+] ". (localtime() - b:save_time) ." seconds have elapsed so far."
   endif
 endfunction
-inoremap <expr> <cr> pumvisible() ?"\<C-y>" : "\<Esc>:call AutoFormatC2()\<CR>\<CR>"
+au BufWritePre * let b:save_time = localtime()
 
-function! AutoFormatC()
-  if &filetype == 'c' || &filetype=='cpp'
-     normal mwk
-     let a = line('.')
-     let content = getline('.')
-     execute a.','.a."!astyle --align-pointer=name --style=java --indent=spaces=3 -w -Y -p -U"
-     normal ==`wl
-  endif
-  normal ia
-  normal ==
-  normal x
-  call feedkeys('a', 'n')
-endfunction
-"inoremap <cr> <CR><Esc>:call AutoFormatC()<CR>
-
-vnoremap ; :Align =<CR>:Align &<CR>
-"vnoremap ;; <Leader>aocom<CR><Leader>ascom<CR><Leader>adec<CR><Leader>adcom<CR>
-
+autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> :%s/\s\+$//e
